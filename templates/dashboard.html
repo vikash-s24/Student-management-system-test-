@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-dashboard {
+            /* 'background.jpg' ki jagah apni image ka sahi naam likhein */
+            background-image: url('{{ url_for("static", filename="img2.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-dashboard p-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-sm mb-6">
+            <h1 class="text-2xl font-bold text-slate-800">Welcome, {{ user }}!</h1>
+            <a href="/logout" class="text-red-500 font-semibold">Logout</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm h-fit text-center">
+                <h2 class="text-lg font-bold mb-4">Mark Attendance</h2>
+                <form method="POST">
+                    <button class="w-full py-10 bg-indigo-600 text-white rounded-2xl text-2xl font-black shadow-lg hover:bg-indigo-700 transition transform hover:scale-105">
+                        CLOCK IN
+                    </button>
+                </form>
+                <p class="mt-4 text-slate-500 text-sm">Click the button above to mark your presence for today.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-lg font-bold mb-4">Attendance History</h2>
+                <div class="overflow-y-auto max-h-96">
+                    {% for log in logs %}
+                    <div class="flex justify-between p-3 border-b last:border-0 hover:bg-slate-50">
+                        <span class="font-medium text-slate-700">{{ log.timestamp.strftime('%d %b, %Y') }}</span>
+                        <span class="text-slate-500">{{ log.timestamp.strftime('%H:%M %p') }}</span>
+                    </div>
+                    {% else %}
+                    <p class="text-slate-400">No records found.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

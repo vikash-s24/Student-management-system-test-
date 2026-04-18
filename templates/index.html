@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Student System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+     <style>
+        .bg-custom {
+            /* this is background image path  */
+            background-image: url('{{ url_for("static", filename="img1.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-custom flex items-center justify-center min-h-screen text-white">
+    
+    <div class="bg-black/50 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-96 border border-white/20">
+        <h2 class="text-3xl font-bold mb-6 text-center">Student Portal</h2>
+        
+        <form action="/login" method="POST" class="mb-6">
+            <h2 class="text-sm font-semibold mb-2 text-green-400 uppercase">Login</h2>
+            <input type="text" name="username" placeholder="Username" required class="w-full p-2 mb-2 rounded bg-white/5 border border-white/20">
+            <input type="password" name="password" placeholder="Password" required class="w-full p-2 mb-4 rounded bg-white/5 border border-white/20">
+            <button class="w-full bg-blue-600 py-2 rounded font-bold hover:bg-blue-700">Sign In</button>
+        </form>
+
+        <hr class="border-white/10 mb-6">
+
+        <form action="/register" method="POST">
+            <h2 class="text-sm font-semibold mb-2 text-green-400 uppercase">New Student? Register</h2>
+            <input type="text" name="username" placeholder="Choose Username" required class="w-full p-2 mb-2 rounded bg-white/5 border border-white/20">
+            <input type="password" name="password" placeholder="Choose Password" required class="w-full p-2 mb-4 rounded bg-white/5 border border-white/20">
+            <button class="w-full bg-green-600 py-2 rounded font-bold hover:bg-green-700">Register</button>
+        </form>
+    </div>
+</body>
+</html>
